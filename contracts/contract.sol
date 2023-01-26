@@ -7,6 +7,8 @@ contract SatelliteImageryIntegrity_dev {
 
     mapping (bytes => uint256) images;
 
+    mapping (address => bool) admins;
+
     struct NewHash {
         string inputHash;
         uint256 timestamp;
@@ -14,10 +16,11 @@ contract SatelliteImageryIntegrity_dev {
 
     constructor() {
         minter = msg.sender;
+        admins[msg.sender] = true;
     }
 
     function writeHash(string memory inputHash, uint256 timestamp) public {
-        require(msg.sender == minter);
+        require(admins[msg.sender]);
 
         bytes memory _bytesHash = bytes(inputHash);
 
@@ -34,6 +37,15 @@ contract SatelliteImageryIntegrity_dev {
         for (uint i=0; i < inputArray.length; i++) {
             writeHash(inputArray[i].inputHash, inputArray[i].timestamp);
         }
+    }
+
+    function checkAddressRights(address _address) public view returns(bool) {
+        return admins[_address];
+    }
+
+    function manageAdminRights(address _address, bool permission) public {
+        require(msg.sender == minter && _address != minter);
+        admins[_address] = permission;
     }
 
 }
