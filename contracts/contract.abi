@@ -1,5 +1,66 @@
 [
 	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_address",
+				"type": "address"
+			},
+			{
+				"internalType": "bool",
+				"name": "permission",
+				"type": "bool"
+			}
+		],
+		"name": "manageAdminRights",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "sceneId",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "sceneHash",
+				"type": "string"
+			}
+		],
+		"name": "writeHash",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"components": [
+					{
+						"internalType": "string",
+						"name": "sceneId",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "sceneHash",
+						"type": "string"
+					}
+				],
+				"internalType": "struct SatelliteImageryIntegrity_dev.NewHash[]",
+				"name": "inputArray",
+				"type": "tuple[]"
+			}
+		],
+		"name": "writeHashArray",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
 		"inputs": [],
 		"stateMutability": "nonpayable",
 		"type": "constructor"
@@ -27,37 +88,19 @@
 		"inputs": [
 			{
 				"internalType": "string",
-				"name": "inputHash",
+				"name": "sceneId",
 				"type": "string"
 			}
 		],
 		"name": "checkHash",
 		"outputs": [
 			{
-				"internalType": "uint256",
+				"internalType": "string",
 				"name": "",
-				"type": "uint256"
+				"type": "string"
 			}
 		],
 		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "_address",
-				"type": "address"
-			},
-			{
-				"internalType": "bool",
-				"name": "permission",
-				"type": "bool"
-			}
-		],
-		"name": "manageAdminRights",
-		"outputs": [],
-		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
@@ -71,49 +114,6 @@
 			}
 		],
 		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "inputHash",
-				"type": "string"
-			},
-			{
-				"internalType": "uint256",
-				"name": "timestamp",
-				"type": "uint256"
-			}
-		],
-		"name": "writeHash",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"components": [
-					{
-						"internalType": "string",
-						"name": "inputHash",
-						"type": "string"
-					},
-					{
-						"internalType": "uint256",
-						"name": "timestamp",
-						"type": "uint256"
-					}
-				],
-				"internalType": "struct SatelliteImageryIntegrity_dev.NewHash[]",
-				"name": "inputArray",
-				"type": "tuple[]"
-			}
-		],
-		"name": "writeHashArray",
-		"outputs": [],
-		"stateMutability": "nonpayable",
 		"type": "function"
 	}
 ]
