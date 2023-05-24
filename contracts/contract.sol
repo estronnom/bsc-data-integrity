@@ -5,13 +5,13 @@ contract SatelliteImageryIntegrity_dev {
 
     address public immutable minter;
 
-    mapping (bytes => uint256) images;
+    mapping (bytes => string) images;
 
     mapping (address => bool) admins;
 
     struct NewHash {
-        string inputHash;
-        uint256 timestamp;
+        string sceneId;
+        string sceneHash;
     }
 
     constructor() {
@@ -19,23 +19,23 @@ contract SatelliteImageryIntegrity_dev {
         admins[msg.sender] = true;
     }
 
-    function writeHash(string memory inputHash, uint256 timestamp) public {
+    function writeHash(string memory sceneId, string memory sceneHash) public {
         require(admins[msg.sender]);
 
-        bytes memory _bytesHash = bytes(inputHash);
+        bytes memory _bytesHash = bytes(sceneId);
 
-        if (images[_bytesHash] != 0) return;
+        if (bytes(images[_bytesHash]).length != 0) return;
         
-        images[_bytesHash] = timestamp;
+        images[_bytesHash] = sceneHash;
     }
 
-    function checkHash(string memory inputHash) public view returns(uint256) {
-        return images[bytes(inputHash)];
+    function checkHash(string memory sceneId) public view returns(string memory) {
+        return images[bytes(sceneId)];
     }
 
     function writeHashArray(NewHash[] memory inputArray) public {
         for (uint i=0; i < inputArray.length; i++) {
-            writeHash(inputArray[i].inputHash, inputArray[i].timestamp);
+            writeHash(inputArray[i].sceneId, inputArray[i].sceneHash);
         }
     }
 
